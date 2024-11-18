@@ -1,0 +1,30 @@
+[package]
+name = "roughenough"
+version = "1.3.0-draft11"
+repository = "https://github.com/int08h/roughenough"
+authors = ["Stuart Stock <stuart@int08h.com>", "Aaron Hill <aa1ronham@gmail.com>"]
+license = "Apache-2.0"
+description = "A Roughtime secure time sync server and client written in Rust"
+readme = "README.md"
+keywords = ["roughtime", "cryptography", "crypto"]
+edition = "2021"
+
+[badges]
+travis-ci = { repository = "int08h/roughenough", branch = "master" }
+
+[features]
+default = []
+awskms = ["rusoto_core", "rusoto_kms", "bytes", "futures"]
+gcpkms = ["google-cloudkms1", "hyper", "hyper-rustls", "serde", "serde_json", "yup-oauth2", "futures", "tokio"]
+
+[dependencies]
+
+[dev-dependencies]
+criterion = "0.5"
+
+[profile.release]
+lto = "fat"
+
+[[bench]]
+name = "roughenough-bench"
+harness = false
